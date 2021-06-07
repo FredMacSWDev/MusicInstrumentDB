@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InstrumentModels\InstrumentCreate.cs" />
+    <Compile Include="InstrumentModels\InstrumentDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
