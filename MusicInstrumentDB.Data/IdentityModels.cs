@@ -32,9 +32,9 @@ namespace MusicInstrumentDB.Data
         {
             return new ApplicationDbContext();
         }
-        public DbSet<Instrument> Post { get; set; }
-        public DbSet<InstrumentFamily> Comment { get; set; }
-        public DbSet<FamousMuscian> Reply { get; set; }
+        public DbSet<Instrument> Instruments { get; set; }
+        public DbSet<InstrumentFamily> InstrumentFamilies { get; set; }
+        public DbSet<FamousMuscian> FamousMusicians { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
