@@ -21,7 +21,7 @@ namespace MusicInstrumentDB.Data
         public virtual List<Instrument> Instruments { get; set; } = new List<Instrument>();
 
         [Required]
-        public int MusicGenre { get; set; }
+        public string MusicGenre { get; set; }
 
         [Required]
         public string Description { get; set; }
