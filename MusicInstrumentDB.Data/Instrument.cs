@@ -13,6 +13,8 @@ namespace MusicInstrumentDB.Data
         [Key]
         public int InstrumentId { get; set; }
         [Required]
+        public Guid OwnerId { get; set; }
+        [Required]
         public string InstrumentName { get; set; }
         [Required]
         public string Description { get; set; }
@@ -21,10 +23,10 @@ namespace MusicInstrumentDB.Data
 
 
         [ForeignKey(nameof(InstrumentFamily))]
-        public int FamilyId { get; set; }
+        public int? FamilyId { get; set; }
         public virtual InstrumentFamily InstrumentFamily { get; set; }
 
-
+        [Display(Name = "Played By")]
         public virtual List<FamousMusician> FamousMusicians { get; set; } = new List<FamousMusician>();
     }
 }
