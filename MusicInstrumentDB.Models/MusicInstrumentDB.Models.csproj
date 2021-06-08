@@ -54,15 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="FamousMusicianModels\FamousMusicianCreate.cs" />
+    <Compile Include="FamousMusicianModels\FamousMusicianDetail.cs" />
+    <Compile Include="FamousMusicianModels\FamousMusicianEdit.cs" />
+    <Compile Include="FamousMusicianModels\FamousMusicianListItem.cs" />
+
     <Compile Include="InstrumentModels\InstrumentCreate.cs" />
     <Compile Include="InstrumentModels\InstrumentDetail.cs" />
     <Compile Include="InstrumentModels\InstrumentEdit.cs" />
     <Compile Include="InstrumentModels\InstrumentListItem.cs" />
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
