@@ -12,6 +12,6 @@ namespace MusicInstrumentDB.Models.InstrumentModels
         public string InstrumentName { get; set; }
 
         public int? FamilyId { get; set; }
-        public string InstrumentFamilyName { get; set; }
+        public string FamilyName { get; set; }
     }
 }

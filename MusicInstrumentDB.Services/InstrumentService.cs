@@ -51,7 +51,7 @@ namespace MusicInstrumentDB.Services
                                     InstrumentId = e.InstrumentId,
                                     InstrumentName = e.InstrumentName,
                                     FamilyId = e.FamilyId,
-                                    InstrumentFamilyName = e.InstrumentFamily.InstrumentFamilyName
+                                    InstrumentFamilyName = e.InstrumentFamily.FamilyName
                                 }
                         );
                 return query.ToArray();
@@ -74,7 +74,7 @@ namespace MusicInstrumentDB.Services
                         Description = entity.Description,
                         Transposition = entity.Transposition,
                         FamilyId = entity.FamilyId,
-                        InstrumentFamily = new InstrumentFamilyListItem() { CategoryId = entity.InstrumentFamily.FamilyId, InstrumentFamilyName = entity.InstrumentFamily.InstrumentFamilyName }
+                        InstrumentFamily = new InstrumentFamilyListItem() { CategoryId = entity.InstrumentFamily.FamilyId, FamilyName = entity.InstrumentFamily.FamilyName }
                         .Select(e => new FamousMusicianListItem()
                         {
                             FamousMusicianId = e.FamousMusicianId,
