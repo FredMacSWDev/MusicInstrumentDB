@@ -1,5 +1,6 @@
 ﻿using MusicInstrumentDB.Data;
 using MusicInstrumentDB.Models.InstrumentFamilyModels;
+using MusicInstrumentDB.Models.InstrumentModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,10 +67,9 @@ namespace MusicInstrumentDB.Services
                         Instruments = entity.Instruments
                         .Select(e => new InstrumentListItem()
                         {
-                            InstrumentId = e.InstrumentId,
-                            FullName = e.FullName,
-                            FamilyName = e.FamilyName
-
+                            FamilyId = e.FamilyId,
+                            FamilyName = e.InstrumentFamily.FamilyName,
+                            InstrumentId = e.InstrumentId
                         }).ToList()
                     };
             }

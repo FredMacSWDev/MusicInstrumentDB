@@ -10,74 +10,73 @@ using System.Web.Http;
 
 namespace MusicInstrumentDB.WebAPI.Controllers
 {
-    public class FamousMusicianController : ApiController
+
+    [Authorize]
+    public class MusicianController : ApiController
     {
-        [Authorize]
-        public class NoteController : ApiController
+        private FamousMusicianService CreateMusicianService()
         {
-            private FamousMusicianService CreateMusicianService()
+            //checking the id of the user (found in application use data table) then takes that id string and parses it into a guid
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            //takes in the parsed user id as a guid and creates a new note service object assigned to var noteService
+            var musicianService = new FamousMusicianService(userId);
+            //then we give it back
+            return musicianService;
+        }
+
+        public IHttpActionResult Get()
+        {
+            FamousMusicianService musicianService = CreateMusicianService();
+            //class instance calls get notes helper method from note service
+            var musician = musicianService.GetMusicians();
+            return Ok(musician);
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            FamousMusicianService musicianService = CreateMusicianService();
+            var musician = musicianService.GetMusicianById(id);
+            return Ok(musician);
+        }
+
+        public IHttpActionResult Post(FamousMusicianCreate musician)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateMusicianService();
+
+            if (!service.CreateMusician(musician))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        public IHttpActionResult Put(FamousMusicianEdit musician)
+        {
+            if (!ModelState.IsValid)
             {
-                //checking the id of the user (found in application use data table) then takes that id string and parses it into a guid
-                var userId = Guid.Parse(User.Identity.GetUserId());
-                //takes in the parsed user id as a guid and creates a new note service object assigned to var noteService
-                var noteService = new FamousMusicianService(userId);
-                //then we give it back
-                return noteService;
+                return BadRequest(ModelState);
+            }
+            var service = CreateMusicianService();
+
+            if (!service.UpdateMusician(musician))
+            {
+                return InternalServerError();
             }
 
-            public IHttpActionResult Get()
-            {
-                FamousMusicianService noteService = CreateMusicianService();
-                //class instance calls get notes helper method from note service
-                var notes = noteService.GetMusicians();
-                return Ok(notes);
-            }
+            return Ok();
+        }
 
-            public IHttpActionResult Get(int id)
-            {
-                FamousMusicianService noteService = CreateMusicianService();
-                var note = noteService.GetMusicianById(id);
-                return Ok(note);
-            }
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateMusicianService();
 
-            public IHttpActionResult Post(FamousMusicianCreate note)
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
+            if (!service.DeleteMusician(id))
+                return InternalServerError();
 
-                var service = CreateMusicianService();
-
-                if (!service.CreateMusician(note))
-                    return InternalServerError();
-
-                return Ok();
-            }
-
-            public IHttpActionResult Put(FamousMusicianEdit note)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                var service = CreateMusicianService();
-
-                if (!service.UpdateMusician(note))
-                {
-                    return InternalServerError();
-                }
-
-                return Ok();
-            }
-
-            public IHttpActionResult Delete(int id)
-            {
-                var service = CreateMusicianService();
-
-                if (!service.DeleteMusician(id))
-                    return InternalServerError();
-
-                return Ok();
-            }
+            return Ok();
         }
     }
 }
+

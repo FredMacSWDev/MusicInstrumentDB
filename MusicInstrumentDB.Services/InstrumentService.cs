@@ -1,4 +1,6 @@
 ﻿using MusicInstrumentDB.Data;
+using MusicInstrumentDB.Models.FamousMusicianModels;
+using MusicInstrumentDB.Models.InstrumentFamilyModels;
 using MusicInstrumentDB.Models.InstrumentModels;
 using System;
 using System.Collections.Generic;
@@ -74,12 +76,12 @@ namespace MusicInstrumentDB.Services
                         Description = entity.Description,
                         Transposition = entity.Transposition,
                         FamilyId = entity.FamilyId,
-                        InstrumentFamily = new InstrumentFamilyListItem() { CategoryId = entity.InstrumentFamily.FamilyId, FamilyName = entity.InstrumentFamily.FamilyName }
-                        .Select(e => new FamousMusicianListItem()
+                        InstrumentFamily = new InstrumentFamilyListItem() { FamilyId = entity.InstrumentFamily.FamilyId, FamilyName = entity.InstrumentFamily.FamilyName },
+                        FamousMusicians = entity.FamousMusicians
+                        .Select(e => new FamousMusician()
                         {
                             FamousMusicianId = e.FamousMusicianId,
-                            FamousMusicianName = e.FamousMusicianName,
-                            InstrumentId = e.Instrument.InstrumentName
+                            FullName = e.FullName
                         }).ToList()
                     };
             }

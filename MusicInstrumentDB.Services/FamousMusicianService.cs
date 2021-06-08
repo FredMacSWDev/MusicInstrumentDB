@@ -50,7 +50,8 @@ namespace MusicInstrumentDB.Services
                              FamousMusicianId = e.FamousMusicianId,
                              FullName = e.FullName,
                              InstrumentId = e.InstrumentId,
-                             MusicGenre = e.MusicGenre
+                             MusicGenre = e.MusicGenre,
+                             InstrumentName = e.Instrument.InstrumentName
                          }
                       );
                 return query.ToArray();
@@ -72,7 +73,8 @@ namespace MusicInstrumentDB.Services
                         FullName = entity.FullName,
                         InstrumentId = entity.InstrumentId,
                         MusicGenre = entity.MusicGenre,
-                        Description = entity.Description
+                        Description = entity.Description,
+                        InstrumentName = entity.Instrument.InstrumentName
                     };
             }
         }

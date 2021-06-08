@@ -58,23 +58,25 @@
     <Compile Include="InstrumentFamilyModels\InstrumentFamilyDetail.cs" />
     <Compile Include="InstrumentFamilyModels\InstrumentFamilyEdit.cs" />
     <Compile Include="InstrumentFamilyModels\InstrumentFamilyListItem.cs" />
-
     <Compile Include="FamousMusicianModels\FamousMusicianCreate.cs" />
     <Compile Include="FamousMusicianModels\FamousMusicianDetail.cs" />
     <Compile Include="FamousMusicianModels\FamousMusicianEdit.cs" />
     <Compile Include="FamousMusicianModels\FamousMusicianListItem.cs" />
-
     <Compile Include="InstrumentModels\InstrumentCreate.cs" />
     <Compile Include="InstrumentModels\InstrumentDetail.cs" />
     <Compile Include="InstrumentModels\InstrumentEdit.cs" />
     <Compile Include="InstrumentModels\InstrumentListItem.cs" />
-
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MusicInstrumentDB.Data\MusicInstrumentDB.Data.csproj">
+      <Project>{582A87F4-BFE5-4EB6-BB43-B913842DB9C1}</Project>
+      <Name>MusicInstrumentDB.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

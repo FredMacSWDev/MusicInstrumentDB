@@ -16,9 +16,9 @@ namespace MusicInstrumentDB.Data
         [Required]
         public string FullName { get; set; }
 
+        [ForeignKey(nameof(Instrument))]
         public int? InstrumentId { get; set; }
-        [ForeignKey(nameof(InstrumentId))]
-        public virtual List<Instrument> Instruments { get; set; } = new List<Instrument>();
+        public virtual Instrument Instrument { get; set; }
 
         [Required]
         public string MusicGenre { get; set; }
