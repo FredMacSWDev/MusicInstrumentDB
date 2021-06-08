@@ -51,7 +51,7 @@ namespace MusicInstrumentDB.Services
                                     InstrumentId = e.InstrumentId,
                                     InstrumentName = e.InstrumentName,
                                     FamilyId = e.FamilyId,
-                                    InstrumentFamilyName = e.InstrumentFamily.FamilyName
+                                    FamilyName = e.InstrumentFamily.FamilyName
                                 }
                         );
                 return query.ToArray();
