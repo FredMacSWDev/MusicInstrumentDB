@@ -23,7 +23,10 @@ namespace MusicInstrumentDB.Services
                 new InstrumentFamily()
                 {
                     OwnerId = _userId,
-                    FamilyName = model.FamilyName                  
+                    FamilyName = model.FamilyName,
+                    Description = model.Description,
+                    Classification = model.Classification,
+                    Tuning = model.Tuning
                 };
 
             using (var ctx = new ApplicationDbContext())
