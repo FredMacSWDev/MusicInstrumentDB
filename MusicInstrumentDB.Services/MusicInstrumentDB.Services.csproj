@@ -54,11 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InstrumentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicInstrumentDB.Data\MusicInstrumentDB.Data.csproj">
+      <Project>{582A87F4-BFE5-4EB6-BB43-B913842DB9C1}</Project>
+      <Name>MusicInstrumentDB.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicInstrumentDB.Models\MusicInstrumentDB.Models.csproj">
+      <Project>{48BBFD24-54F4-4425-AD0A-A3A2EE6897D9}</Project>
+      <Name>MusicInstrumentDB.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
