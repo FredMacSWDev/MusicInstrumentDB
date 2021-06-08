@@ -49,7 +49,10 @@ namespace MusicInstrumentDB.Services
                                 new InstrumentFamilyListItem
                                 {
                                     FamilyId = e.FamilyId,
-                                    FamilyName = e.FamilyName
+                                    FamilyName = e.FamilyName,
+                                    Description = e.Description,
+                                    Classification = e.Classification,
+                                    Tuning = e.Tuning
                                 });
                 return query.ToArray();
             }
@@ -67,6 +70,9 @@ namespace MusicInstrumentDB.Services
                     {
                         FamilyId = entity.FamilyId,
                         FamilyName = entity.FamilyName,
+                        Description = entity.Description,
+                        Classification = entity.Classification,
+                        Tuning = entity.Tuning,
                         Instruments = entity.Instruments
                         .Select(e => new InstrumentListItem()
                         {
@@ -80,7 +86,7 @@ namespace MusicInstrumentDB.Services
 
         public bool UpdateInstrumentFamily(InstrumentFamilyEdit model)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
@@ -88,6 +94,9 @@ namespace MusicInstrumentDB.Services
                         .Single(e => e.FamilyId == model.FamilyId && e.OwnerId == _userId);
 
                 entity.FamilyName = model.FamilyName;
+                entity.Description = model.Description;
+                entity.Classification = model.Classification;
+                entity.Tuning = model.Tuning;
 
                 return ctx.SaveChanges() == 1;
             }
