@@ -34,7 +34,7 @@ namespace MusicInstrumentDB.Data
         }
         public DbSet<Instrument> Instruments { get; set; }
         public DbSet<InstrumentFamily> InstrumentFamilies { get; set; }
-        public DbSet<FamousMuscian> FamousMusicians { get; set; }
+        public DbSet<FamousMusician> FamousMusicians { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
