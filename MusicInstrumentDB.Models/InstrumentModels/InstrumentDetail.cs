@@ -1,4 +1,5 @@
 ﻿using MusicInstrumentDB.Data;
+using MusicInstrumentDB.Models.FamousMusicianModels;
 using MusicInstrumentDB.Models.InstrumentFamilyModels;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,8 @@ namespace MusicInstrumentDB.Models.InstrumentModels
         public string Description { get; set; }
         public string Transposition { get; set; }
 
-        public int? FamilyId { get; set; }
-        public virtual InstrumentFamilyListItem InstrumentFamily { get; set; }
+        public string InstrumentFamilyName {get; set;}
 
-        public virtual List<FamousMusician> FamousMusicians { get; set; }
+        public virtual List<FamousMusicianListItem> FamousMusicians { get; set; }
     }
 }
