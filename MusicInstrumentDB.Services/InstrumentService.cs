@@ -75,13 +75,16 @@ namespace MusicInstrumentDB.Services
                         InstrumentName = entity.InstrumentName,
                         Description = entity.Description,
                         Transposition = entity.Transposition,
-                        FamilyId = entity.FamilyId,
-                        InstrumentFamily = new InstrumentFamilyListItem() { FamilyId = entity.InstrumentFamily.FamilyId, FamilyName = entity.InstrumentFamily.FamilyName },
+                        InstrumentFamilyName = entity.InstrumentFamily.FamilyName,
+
                         FamousMusicians = entity.FamousMusicians
-                        .Select(e => new FamousMusician()
+                        .Select(e => new FamousMusicianListItem()
                         {
                             FamousMusicianId = e.FamousMusicianId,
-                            FullName = e.FullName
+                            FullName = e.FullName,
+                            InstrumentId = e.InstrumentId,
+                            InstrumentName = e.Instrument.InstrumentName,
+                            MusicGenre = e.MusicGenre
                         }).ToList()
                     };
             }
