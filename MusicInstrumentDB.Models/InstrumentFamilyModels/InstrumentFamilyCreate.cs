@@ -12,7 +12,16 @@ namespace MusicInstrumentDB.Models.InstrumentFamilyModels
         [Required]
         [MinLength(5, ErrorMessage = "Please enter at least 5 characters.")]
         [MaxLength(40, ErrorMessage = "There are too many characters in this field.")]
-        public string FamilyName { get; set; }      
+        public string FamilyName { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public string Classification { get; set; }
+
+        [Required]
+        public string Tuning { get; set; }
 
     }
 }
