@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace MusicInstrumentDB.WebAPI.Controllers
 {
+    [Authorize]
     public class InstrumentController : ApiController
     {
         private InstrumentService CreateInstrumentService()
