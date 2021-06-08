@@ -10,7 +10,7 @@ namespace MusicInstrumentDB.Models.FamousMusicianModels
     {
         public int FamousMusicianId { get; set; }
         public string FullName { get; set; }
-        public int InstrumentId { get; set; }
+        public int? InstrumentId { get; set; }
         public string MusicGenre { get; set; }
         public string Description { get; set; }
     }
