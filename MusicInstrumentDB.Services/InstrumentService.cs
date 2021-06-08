@@ -68,16 +68,41 @@ namespace MusicInstrumentDB.Services
                     ctx
                     .Instruments
                     .Single(e => e.InstrumentId == id && e.OwnerId == _userId);
-                return
-                    new InstrumentDetail
-                    {
-                        InstrumentId = entity.InstrumentId,
-                        InstrumentName = entity.InstrumentName,
-                        Description = entity.Description,
-                        Transposition = entity.Transposition,
-                        InstrumentFamilyName = entity.InstrumentFamily.FamilyName,
+                if (entity.FamilyId != null)
+                {
+                    return
+                        new InstrumentDetail
+                        {
+                            InstrumentId = entity.InstrumentId,
+                            InstrumentName = entity.InstrumentName,
+                            Description = entity.Description,
+                            Transposition = entity.Transposition,
+                            FamilyId = entity.FamilyId,
+                            InstrumentFamilyName = entity.InstrumentFamily.FamilyName,
 
-                        FamousMusicians = entity.FamousMusicians
+                            FamousMusicians = entity.FamousMusicians
+                            .Select(e => new FamousMusicianListItem()
+                            {
+                                FamousMusicianId = e.FamousMusicianId,
+                                FullName = e.FullName,
+                                InstrumentId = e.InstrumentId,
+                                InstrumentName = e.Instrument.InstrumentName,
+                                MusicGenre = e.MusicGenre
+                            }).ToList()
+                        };
+                }
+                else
+                {
+                    return
+                     new InstrumentDetail
+                     {
+                         InstrumentId = entity.InstrumentId,
+                         InstrumentName = entity.InstrumentName,
+                         Description = entity.Description,
+                         Transposition = entity.Transposition,
+                         InstrumentFamilyName = "family does not exist",
+
+                         FamousMusicians = entity.FamousMusicians
                         .Select(e => new FamousMusicianListItem()
                         {
                             FamousMusicianId = e.FamousMusicianId,
@@ -86,7 +111,8 @@ namespace MusicInstrumentDB.Services
                             InstrumentName = e.Instrument.InstrumentName,
                             MusicGenre = e.MusicGenre
                         }).ToList()
-                    };
+                     };
+                }
             }
         }
 

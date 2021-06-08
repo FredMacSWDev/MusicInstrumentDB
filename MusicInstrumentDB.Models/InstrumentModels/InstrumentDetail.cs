@@ -15,7 +15,7 @@ namespace MusicInstrumentDB.Models.InstrumentModels
         public string InstrumentName { get; set; }
         public string Description { get; set; }
         public string Transposition { get; set; }
-
+        public int? FamilyId { get; set; }
         public string InstrumentFamilyName {get; set;}
 
         public virtual List<FamousMusicianListItem> FamousMusicians { get; set; }
