@@ -9,7 +9,9 @@ namespace MusicInstrumentDB.Models.InstrumentFamilyModels
 {
     public class InstrumentFamilyEdit
     {
+        [Required]
         public int FamilyId { get; set; }
+        [Required]
         public string FamilyName { get; set; }
         [Required]
         public string Description { get; set; }
