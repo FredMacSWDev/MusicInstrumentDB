@@ -19,24 +19,7 @@ namespace MusicInstrumentDB.Services
             _userId = userId;
         }
 
-        //public byte[] Converter(Image imageIn)
-        //{
-        //    using (var ms = new MemoryStream())
-        //    {
-        //        imageIn.Save(ms, imageIn.RawFormat);
-        //        return ms.ToArray();
-        //    }
-        //}
-
-
-        //public Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
-
-        public bool CreateImage(Image imageIn)//need to refactor to accept raw image
+        public bool CreateImage(Image imageIn)
         {
             ImageCreate model = new ImageCreate();
             //will call converter
@@ -53,9 +36,9 @@ namespace MusicInstrumentDB.Services
             }
         }
 
-        public ImageDetail GetImageById(int id)//refactor to return raw image
+        public ImageDetail GetImageById(int id)
         {
-            //will call byteArrayToImage
+            //will call converter
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
