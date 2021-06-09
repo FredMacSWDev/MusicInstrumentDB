@@ -111,6 +111,16 @@ namespace MusicInstrumentDB.Services
                         .InstrumentFamilies
                         .Single(e => e.FamilyId == familyId && e.OwnerId == _userId);
 
+                var entity2 =
+                    ctx
+                        .Instruments
+                        .Single(e => e.FamilyId == familyId);
+
+                if (entity2.FamilyId == entity.FamilyId)
+                {
+                    return false;
+                }
+
                 ctx.InstrumentFamilies.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
