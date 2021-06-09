@@ -65,8 +65,8 @@ namespace MusicInstrumentDB.WebAPI.Controllers
             var service = CreateInstrumentService();
 
             if (!service.DeleteInstrument(id))
-                return InternalServerError();
-
+                return BadRequest("Please remove or edit musicians that refer to this instrument Id");
+                
             return Ok();
         }
     }
