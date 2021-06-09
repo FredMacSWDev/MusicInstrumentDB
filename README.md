@@ -16,7 +16,8 @@ From there, select "Download ZIP". When the file has been downloaded, be sure to
 
 Once the code has been opened in VS Community, you will want to set the "MusicInstrumentDB.WebAPI" assembly as the startup project.  Go to the Solution Explorer, locate the "MusicInstrumentDB.WebAPI" assembly, right-click that assembly and select "Set as Startup Project" from the menu.
 
-![Set as Startup Project]( "'Set the Startup Project' Menu Option") 
+![MusicInstrumentDB.WebAPI Assembly](https://github.com/FredMacSWDev/MusicInstrumentDB/blob/FredMacSWDev/T11/readme-patch-1/images/MusicInstrumentDB_WebAPI%20Assembly%20Screenshot.PNG "'MusicInstrumentDB.WebAPI Assembly' Menu Item") 
+![Set as Startup Project](https://github.com/FredMacSWDev/MusicInstrumentDB/blob/FredMacSWDev/T11/readme-patch-1/images/Set%20as%20Startup%20Project%20-%20VS%20Community%202019%20Menu%20(Partial).PNG "'Set the Startup Project' Menu Option") 
 
 You will also need to Restore NuGet Packages in WebAPI Solution by right-clicking the solution and selecting "Restore NuGet Packages."  
 
