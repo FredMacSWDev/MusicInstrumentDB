@@ -142,8 +142,16 @@ namespace MusicInstrumentDB.Services
                     .Instruments
                     .Single(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
 
-                ctx.Instruments.Remove(entity);
+                var entity2 =
+                    ctx
+                    .FamousMusicians
+                    .Single( e=> e.InstrumentId == instrumentId);
 
+                if (entity2.InstrumentId == entity.InstrumentId)
+                {
+                    return false;
+                }
+                ctx.Instruments.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
