@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace MusicInstrumentDB.Data
 {
-    public class Image
+    public class ImageAsByte
     {
         [Key]
         public int ImageId { get; set; }
 
         [Required]
         public byte[] ImageByte { get; set; }
+
+        [Required]
+        public Guid OwnerId { get; set; }
     }
 }

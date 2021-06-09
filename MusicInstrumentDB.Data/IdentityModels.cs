@@ -35,6 +35,7 @@ namespace MusicInstrumentDB.Data
         public DbSet<Instrument> Instruments { get; set; }
         public DbSet<InstrumentFamily> InstrumentFamilies { get; set; }
         public DbSet<FamousMusician> FamousMusicians { get; set; }
+        public DbSet<ImageAsByte> ByteArrayImages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
