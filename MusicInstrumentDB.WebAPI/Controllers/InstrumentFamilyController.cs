@@ -59,7 +59,7 @@ namespace MusicInstrumentDB.WebAPI.Controllers
             var service = CreateInstrumentFamilyService();
 
             if (!service.DeleteInstrumentFamily(id))
-                return InternalServerError();
+                return BadRequest("Please remove all instruments from this table before deleting this Instrument Family from the database.");
 
             return Ok();
         }
