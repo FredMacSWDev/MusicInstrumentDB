@@ -1,4 +1,5 @@
-﻿using MusicInstrumentDB.Data;
+﻿using Microsoft.AspNetCore.Http;
+using MusicInstrumentDB.Data;
 using MusicInstrumentDB.Models.ImageModels;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace MusicInstrumentDB.Services
             _userId = userId;
         }
 
-        public bool CreateImage(Image imageIn)
+        public bool CreateImage(IFormFile imageIn)
         {
             ImageCreate model = new ImageCreate();
             //will call converter
