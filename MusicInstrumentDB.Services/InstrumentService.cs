@@ -145,12 +145,11 @@ namespace MusicInstrumentDB.Services
                 var entity2 =
                     ctx
                     .FamousMusicians
-                    .Single( e=> e.InstrumentId == instrumentId);
-
-                if (entity2.InstrumentId == entity.InstrumentId)
-                {
+                    .Where(e => e.InstrumentId == instrumentId);
+                
+                if (entity2 != null)
                     return false;
-                }
+                
                 ctx.Instruments.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
