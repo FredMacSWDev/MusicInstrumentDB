@@ -44,6 +44,7 @@ namespace MusicInstrumentDB.WebAPI.Controllers
         {
             InstrumentService instrumentService = CreateInstrumentService();
             var instrument = instrumentService.GetInstrumentById(id);
+
             return Ok(instrument);
         }
 
@@ -66,7 +67,7 @@ namespace MusicInstrumentDB.WebAPI.Controllers
 
             if (!service.DeleteInstrument(id))
                 return BadRequest("Please remove or edit musicians that refer to this instrument Id");
-                
+
             return Ok();
         }
     }
