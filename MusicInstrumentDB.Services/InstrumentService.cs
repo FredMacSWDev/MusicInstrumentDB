@@ -68,6 +68,7 @@ namespace MusicInstrumentDB.Services
                     ctx
                     .Instruments
                     .Single(e => e.InstrumentId == id && e.OwnerId == _userId);
+
                 if (entity.FamilyId != null)
                 {
                     return
@@ -147,7 +148,7 @@ namespace MusicInstrumentDB.Services
                     .FamousMusicians
                     .Where(e => e.InstrumentId == instrumentId);
                 
-                if (entity2 != null)
+                if (entity2 == null)
                     return false;
                 
                 ctx.Instruments.Remove(entity);
