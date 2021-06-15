@@ -70,5 +70,18 @@ namespace MusicInstrumentDB.WebAPI.Controllers
 
             return Ok();
         }
+
+
+        
+        [HttpGet]
+        public IHttpActionResult GetByName(string instrumentName)
+        {
+            var service = CreateInstrumentService();
+            var instruments = service.GetInstrumentByName(instrumentName);
+            if (instruments == null)
+                return BadRequest("There are no Instruments by that name.");
+
+            return Ok(instruments);
+        }
     }
 }

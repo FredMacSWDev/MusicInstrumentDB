@@ -155,5 +155,26 @@ namespace MusicInstrumentDB.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public IEnumerable<InstrumentListItem> GetInstrumentByName (string instrumentName)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx.Instruments
+                    .Where(e => e.InstrumentName.ToLower().Contains(instrumentName.ToLower()) && e.OwnerId == _userId)
+                    .Select(
+                        e =>
+                            new InstrumentListItem
+                            {
+                                InstrumentId = e.InstrumentId,
+                                InstrumentName = e.InstrumentName,
+                                FamilyId = e.FamilyId,
+                                FamilyName = e.InstrumentFamily.FamilyName
+                            }
+                        );
+                return entity.ToArray();
+            }
+        }
     }
 }
