@@ -1,12 +1,17 @@
 ﻿using Microsoft.AspNet.Identity;
+using MusicInstrumentDB.Data;
 using MusicInstrumentDB.Models.FamousMusicianModels;
 using MusicInstrumentDB.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace MusicInstrumentDB.WebAPI.Controllers
 {
@@ -14,11 +19,17 @@ namespace MusicInstrumentDB.WebAPI.Controllers
     [Authorize]
     public class MusicianController : ApiController
     {
+        //[Queryable]
+        //public IQueryable<FamousMusician> Get()
+        //{
+        //    return FamousMusician.AsQueryable();
+        //}
+
         private FamousMusicianService CreateMusicianService()
         {
             //checking the id of the user (found in application use data table) then takes that id string and parses it into a guid
             var userId = Guid.Parse(User.Identity.GetUserId());
-            //takes in the parsed user id as a guid and creates a new note service object assigned to var noteService
+            //takes in the parsed user id as a guid and creates a new service object assigned to var
             var musicianService = new FamousMusicianService(userId);
             //then we give it back
             return musicianService;
@@ -27,7 +38,7 @@ namespace MusicInstrumentDB.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             FamousMusicianService musicianService = CreateMusicianService();
-            //class instance calls get notes helper method from note service
+            //class instance calls get helper method from service
             var musician = musicianService.GetMusicians();
             return Ok(musician);
         }
@@ -76,6 +87,14 @@ namespace MusicInstrumentDB.WebAPI.Controllers
                 return InternalServerError();
 
             return Ok();
+        }
+
+        [HttpGet]
+        public IHttpActionResult SearchAsync(string search)
+        {
+            MusicInstrumentDBEntities db = new MusicInstrumentDBEntities();
+            var result = db.FamousMusicians.Where(x => x.FullName.StartsWith(search) || search == null).ToList();
+            return Ok(result);
         }
     }
 }
