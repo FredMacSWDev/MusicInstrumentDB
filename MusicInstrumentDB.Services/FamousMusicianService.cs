@@ -57,6 +57,28 @@ namespace MusicInstrumentDB.Services
                 return query.ToArray();
             }
         }
+        public IEnumerable<FamousMusicianListItem> GetMusicianSearch(string search)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                  ctx
+                      .FamousMusicians
+                      .Where(x => x.FullName.StartsWith(search) || search == null)
+                      .Select(
+                      e =>
+                         new FamousMusicianListItem
+                         {
+                             FamousMusicianId = e.FamousMusicianId,
+                             FullName = e.FullName,
+                             InstrumentId = e.InstrumentId,
+                             MusicGenre = e.MusicGenre,
+                             InstrumentName = e.Instrument.InstrumentName
+                         }
+                      );
+                return query.ToArray();
+            }
+        }
 
         public FamousMusicianDetail GetMusicianById(int id)
         {
@@ -65,22 +87,17 @@ namespace MusicInstrumentDB.Services
                 var entity =
                      ctx
                          .FamousMusicians
-                         .SingleOrDefault(e => e.FamousMusicianId == id && e.OwnderId == _userId);
-
-                if (entity != null)
-                {
-                    return
-                        new FamousMusicianDetail
-                        {
-                            FamousMusicianId = entity.FamousMusicianId,
-                            FullName = entity.FullName,
-                            InstrumentId = entity.InstrumentId,
-                            MusicGenre = entity.MusicGenre,
-                            Description = entity.Description,
-                            InstrumentName = entity.Instrument.InstrumentName
-                        };
-                }
-                return null;
+                         .Single(e => e.FamousMusicianId == id && e.OwnderId == _userId);
+                return
+                    new FamousMusicianDetail
+                    {
+                        FamousMusicianId = entity.FamousMusicianId,
+                        FullName = entity.FullName,
+                        InstrumentId = entity.InstrumentId,
+                        MusicGenre = entity.MusicGenre,
+                        Description = entity.Description,
+                        InstrumentName = entity.Instrument.InstrumentName
+                    };
             }
         }
 
@@ -91,18 +108,14 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                         .FamousMusicians
-                        .SingleOrDefault(e => e.FamousMusicianId == model.FamousMusicianId && e.OwnderId == _userId);
+                        .Single(e => e.FamousMusicianId == model.FamousMusicianId && e.OwnderId == _userId);
 
-                if (entity != null)
-                {
-                    entity.FullName = model.FullName;
-                    entity.Description = model.Description;
-                    entity.InstrumentId = model.InstrumentId;
-                    entity.MusicGenre = model.MusicGenre;
+                entity.FullName = model.FullName;
+                entity.Description = model.Description;
+                entity.InstrumentId = model.InstrumentId;
+                entity.MusicGenre = model.MusicGenre;
 
-                    return ctx.SaveChanges() == 1;
-                }
-                return false;
+                return ctx.SaveChanges() == 1;
             }
         }
 
@@ -113,14 +126,9 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                         .FamousMusicians
-                        .SingleOrDefault(e => e.FamousMusicianId == id && e.OwnderId == _userId);
-
-                if (entity != null)
-                {
-                    ctx.FamousMusicians.Remove(entity);
-                    return ctx.SaveChanges() == 1;
-                }
-                return false;
+                        .Single(e => e.FamousMusicianId == id && e.OwnderId == _userId);
+                ctx.FamousMusicians.Remove(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
     }
