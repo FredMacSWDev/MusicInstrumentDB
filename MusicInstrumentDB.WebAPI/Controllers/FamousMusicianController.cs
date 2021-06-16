@@ -43,6 +43,14 @@ namespace MusicInstrumentDB.WebAPI.Controllers
             return Ok(musician);
         }
 
+        [HttpGet]
+        public IHttpActionResult SearchAsync(string search)
+        {
+            FamousMusicianService musicianService = CreateMusicianService();
+            var musician = musicianService.GetMusicianSearch(search);
+            return Ok(musician);
+        }
+
         public IHttpActionResult Get(int id)
         {
             FamousMusicianService musicianService = CreateMusicianService();
@@ -89,13 +97,6 @@ namespace MusicInstrumentDB.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        public IHttpActionResult SearchAsync(string search)
-        {
-            MusicInstrumentDBEntities db = new MusicInstrumentDBEntities();
-            var result = db.FamousMusicians.Where(x => x.FullName.StartsWith(search) || search == null).ToList();
-            return Ok(result);
-        }
     }
 }
 
