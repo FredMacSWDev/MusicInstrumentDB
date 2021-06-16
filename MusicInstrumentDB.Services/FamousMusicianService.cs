@@ -65,17 +65,22 @@ namespace MusicInstrumentDB.Services
                 var entity =
                      ctx
                          .FamousMusicians
-                         .Single(e => e.FamousMusicianId == id && e.OwnderId == _userId);
-                return
-                    new FamousMusicianDetail
-                    {
-                        FamousMusicianId = entity.FamousMusicianId,
-                        FullName = entity.FullName,
-                        InstrumentId = entity.InstrumentId,
-                        MusicGenre = entity.MusicGenre,
-                        Description = entity.Description,
-                        InstrumentName = entity.Instrument.InstrumentName
-                    };
+                         .SingleOrDefault(e => e.FamousMusicianId == id && e.OwnderId == _userId);
+
+                if (entity != null)
+                {
+                    return
+                        new FamousMusicianDetail
+                        {
+                            FamousMusicianId = entity.FamousMusicianId,
+                            FullName = entity.FullName,
+                            InstrumentId = entity.InstrumentId,
+                            MusicGenre = entity.MusicGenre,
+                            Description = entity.Description,
+                            InstrumentName = entity.Instrument.InstrumentName
+                        };
+                }
+                return null;
             }
         }
 
@@ -86,14 +91,18 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                         .FamousMusicians
-                        .Single(e => e.FamousMusicianId ==  model.FamousMusicianId && e.OwnderId == _userId);
+                        .SingleOrDefault(e => e.FamousMusicianId == model.FamousMusicianId && e.OwnderId == _userId);
 
-                entity.FullName = model.FullName;
-                entity.Description = model.Description;
-                entity.InstrumentId = model.InstrumentId;
-                entity.MusicGenre = model.MusicGenre;
+                if (entity != null)
+                {
+                    entity.FullName = model.FullName;
+                    entity.Description = model.Description;
+                    entity.InstrumentId = model.InstrumentId;
+                    entity.MusicGenre = model.MusicGenre;
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+                return false;
             }
         }
 
@@ -104,9 +113,14 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                         .FamousMusicians
-                        .Single(e => e.FamousMusicianId == id && e.OwnderId == _userId);
-                ctx.FamousMusicians.Remove(entity);
-                return ctx.SaveChanges() == 1;
+                        .SingleOrDefault(e => e.FamousMusicianId == id && e.OwnderId == _userId);
+
+                if (entity != null)
+                {
+                    ctx.FamousMusicians.Remove(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+                return false;
             }
         }
     }
