@@ -13,10 +13,10 @@ namespace MusicInstrumentDB.WebAPI
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MusicInstrumentDBEntities : DbContext
+    public partial class InstrumentFamDBEntities : DbContext
     {
-        public MusicInstrumentDBEntities()
-            : base("name=MusicInstrumentDBEntities")
+        public InstrumentFamDBEntities()
+            : base("name=InstrumentFamDBEntities")
         {
         }
     
@@ -25,7 +25,6 @@ namespace MusicInstrumentDB.WebAPI
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<FamousMusician> FamousMusicians { get; set; }
-        public virtual DbSet<Data.InstrumentFamily> InstrumentFamilies { get; set; }
+        public virtual DbSet<InstrumentFamily> InstrumentFamilies { get; set; }
     }
 }

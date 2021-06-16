@@ -27,7 +27,7 @@ namespace MusicInstrumentDB.WebAPI.Controllers
             return Ok(instrumentFamily);
         }
 
-       
+
         public IHttpActionResult Post(InstrumentFamilyCreate instrumentFamily)
         {
             if (!ModelState.IsValid)
@@ -69,6 +69,19 @@ namespace MusicInstrumentDB.WebAPI.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
             var instrumentFamilyService = new InstrumentFamilyService(userId);
             return instrumentFamilyService;
+        }
+
+        [HttpGet]
+        public IHttpActionResult InstrumentFamilySearchAsync(string search)
+        {
+            InstrumentFamDBEntities qdb = new InstrumentFamDBEntities();
+            var result =
+                qdb
+                    .InstrumentFamilies
+                    .Where(e => e.FamilyName
+                    .StartsWith(search) || search == null)
+                    .ToList();
+            return Ok(result);
         }
 
     }
