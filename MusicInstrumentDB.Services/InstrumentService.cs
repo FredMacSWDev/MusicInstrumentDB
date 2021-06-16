@@ -156,7 +156,7 @@ namespace MusicInstrumentDB.Services
             }
         }
 
-        public IEnumerable<InstrumentListItem> GetInstrumentByName (string instrumentName)
+        public IEnumerable<InstrumentDetail> GetInstrumentByName (string instrumentName)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -165,12 +165,14 @@ namespace MusicInstrumentDB.Services
                     .Where(e => e.InstrumentName.ToLower().Contains(instrumentName.ToLower()) && e.OwnerId == _userId)
                     .Select(
                         e =>
-                            new InstrumentListItem
+                            new InstrumentDetail
                             {
                                 InstrumentId = e.InstrumentId,
                                 InstrumentName = e.InstrumentName,
                                 FamilyId = e.FamilyId,
-                                FamilyName = e.InstrumentFamily.FamilyName
+                                InstrumentFamilyName = e.InstrumentFamily.FamilyName,
+                                Description = e.Description,
+                                Transposition = e.Transposition
                             }
                         );
                 return entity.ToArray();
