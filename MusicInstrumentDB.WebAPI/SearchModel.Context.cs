@@ -26,6 +26,5 @@ namespace MusicInstrumentDB.WebAPI
         }
     
         public virtual DbSet<FamousMusician> FamousMusicians { get; set; }
-        public virtual DbSet<Data.InstrumentFamily> InstrumentFamilies { get; set; }
     }
 }
