@@ -44,8 +44,10 @@ namespace MusicInstrumentDB.WebAPI.Controllers
         {
             InstrumentService instrumentService = CreateInstrumentService();
             var instrument = instrumentService.GetInstrumentById(id);
+            if (instrument != null)
+                return Ok(instrument);
 
-            return Ok(instrument);
+            return BadRequest("There is no instrument by that Id");
         }
 
         public IHttpActionResult Put(InstrumentEdit instrument)
