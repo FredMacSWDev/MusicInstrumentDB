@@ -39,6 +39,7 @@ We used the following external resources in our project:
 [DB Diagram](https://dbdiagram.io/d/60be2bbab29a09603d1852e8)  
 Our [GitHub](https://github.com/FredMacSWDev/MusicInstrumentDB) API Repository  
 Our [GitHub](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) Console app Repository  
+[Postman API Documentation](https://documenter.getpostman.com/view/15929032/TzeWH8Ly)  
 
 ## Techonologies Used
 [Visual Studio Community 2019](https://visualstudio.microsoft.com/downloads/)  
