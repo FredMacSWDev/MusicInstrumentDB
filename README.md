@@ -7,6 +7,8 @@ We've created an API to build an ever-growing database of musical instruments, t
 
 Each instrument contains a description of that instrument, the transposition of the instrument, and the instrument family it belongs to.
 
+**NOTE:**  We have created a [Console App](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) that works in conjunction with this API as an alternative way to access the endpoints.
+
 ## Installation
 To download this repository, press the green button that says 'Code'
 
@@ -34,7 +36,7 @@ We used the following external resources in our project:
 
 [Google Docs](https://docs.google.com/document/d/1CxKcJ8LFvc4VGn--fDcR44S8Y40gQTqe3zyI4JUjB0c/) for planning  
 [Trello Board](https://trello.com/b/6pDaTFPd/agile-sprint-board)  
-[DB Diagram](https://dbdiagram.io/d/60be2bbab29a09603d1852e8)
+[DB Diagram](https://dbdiagram.io/d/60be2bbab29a09603d1852e8)  
 Our [GitHub](https://github.com/FredMacSWDev/MusicInstrumentDB) API Repository  
 Our [GitHub](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) Console app Repository  
 
