@@ -34,7 +34,7 @@ We used the following external resources in our project:
 
 [Google Docs](https://docs.google.com/document/d/1CxKcJ8LFvc4VGn--fDcR44S8Y40gQTqe3zyI4JUjB0c/) for planning  
 [Trello Board](https://trello.com/b/6pDaTFPd/agile-sprint-board)  
-DB Diagram(https://dbdiagram.io/d/60be2bbab29a09603d1852e8)  
+[DB Diagram](https://dbdiagram.io/d/60be2bbab29a09603d1852e8)  
 Our [GitHub](https://github.com/FredMacSWDev/MusicInstrumentDB) API Repository  
 Our [GitHub](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) Console app Repository  
 
