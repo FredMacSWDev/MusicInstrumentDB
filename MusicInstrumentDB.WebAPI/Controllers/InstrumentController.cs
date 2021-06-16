@@ -44,8 +44,10 @@ namespace MusicInstrumentDB.WebAPI.Controllers
         {
             InstrumentService instrumentService = CreateInstrumentService();
             var instrument = instrumentService.GetInstrumentById(id);
+            if (instrument != null)
+                return Ok(instrument);
 
-            return Ok(instrument);
+            return BadRequest("There is no instrument by that Id");
         }
 
         public IHttpActionResult Put(InstrumentEdit instrument)
@@ -65,10 +67,15 @@ namespace MusicInstrumentDB.WebAPI.Controllers
         {
             var service = CreateInstrumentService();
 
+            if (service.DeleteInstrument(id))
+            {
+
             if (!service.DeleteInstrument(id))
                 return BadRequest("Please remove or edit musicians that refer to this instrument Id");
 
             return Ok();
+            }
+            return BadRequest("There is no instrument by that ID");
         }
 
 

@@ -67,21 +67,48 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                     .Instruments
-                    .Single(e => e.InstrumentId == id && e.OwnerId == _userId);
-
-                if (entity.FamilyId != null)
+                    .Where(e => e.InstrumentId == id && e.OwnerId == _userId);
+                if (entity.Any())
                 {
-                    return
-                        new InstrumentDetail
-                        {
-                            InstrumentId = entity.InstrumentId,
-                            InstrumentName = entity.InstrumentName,
-                            Description = entity.Description,
-                            Transposition = entity.Transposition,
-                            FamilyId = entity.FamilyId,
-                            InstrumentFamilyName = entity.InstrumentFamily.FamilyName,
+                    var populatedEntity =
+                    ctx
+                    .Instruments
+                    .Single(e => e.InstrumentId == id && e.OwnerId == _userId);
+                    if (populatedEntity.FamilyId != null)
+                    {
+                        return
+                            new InstrumentDetail
+                            {
+                                InstrumentId = populatedEntity.InstrumentId,
+                                InstrumentName = populatedEntity.InstrumentName,
+                                Description = populatedEntity.Description,
+                                Transposition = populatedEntity.Transposition,
+                                FamilyId = populatedEntity.FamilyId,
+                                InstrumentFamilyName = populatedEntity.InstrumentFamily.FamilyName,
 
-                            FamousMusicians = entity.FamousMusicians
+                                FamousMusicians = populatedEntity.FamousMusicians
+                                .Select(e => new FamousMusicianListItem()
+                                {
+                                    FamousMusicianId = e.FamousMusicianId,
+                                    FullName = e.FullName,
+                                    InstrumentId = e.InstrumentId,
+                                    InstrumentName = e.Instrument.InstrumentName,
+                                    MusicGenre = e.MusicGenre
+                                }).ToList()
+                            };
+                    }
+                    else
+                    {
+                        return
+                         new InstrumentDetail
+                         {
+                             InstrumentId = populatedEntity.InstrumentId,
+                             InstrumentName = populatedEntity.InstrumentName,
+                             Description = populatedEntity.Description,
+                             Transposition = populatedEntity.Transposition,
+                             InstrumentFamilyName = "family does not exist",
+
+                             FamousMusicians = populatedEntity.FamousMusicians
                             .Select(e => new FamousMusicianListItem()
                             {
                                 FamousMusicianId = e.FamousMusicianId,
@@ -90,30 +117,10 @@ namespace MusicInstrumentDB.Services
                                 InstrumentName = e.Instrument.InstrumentName,
                                 MusicGenre = e.MusicGenre
                             }).ToList()
-                        };
+                         };
+                    }
                 }
-                else
-                {
-                    return
-                     new InstrumentDetail
-                     {
-                         InstrumentId = entity.InstrumentId,
-                         InstrumentName = entity.InstrumentName,
-                         Description = entity.Description,
-                         Transposition = entity.Transposition,
-                         InstrumentFamilyName = "family does not exist",
-
-                         FamousMusicians = entity.FamousMusicians
-                        .Select(e => new FamousMusicianListItem()
-                        {
-                            FamousMusicianId = e.FamousMusicianId,
-                            FullName = e.FullName,
-                            InstrumentId = e.InstrumentId,
-                            InstrumentName = e.Instrument.InstrumentName,
-                            MusicGenre = e.MusicGenre
-                        }).ToList()
-                     };
-                }
+                return null;
             }
         }
 
@@ -141,22 +148,30 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                     .Instruments
+                    .Where(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
+                if (entity.Any())
+                {
+                    var populatedEntity =
+                    ctx
+                    .Instruments
                     .Single(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
 
-                var entity2 =
+                    var entity2 =
                     ctx
                     .FamousMusicians
                     .Where(e => e.InstrumentId == instrumentId);
-                
-                if (entity2 == null)
+
+                if (entity2 != null)
                     return false;
-                
-                ctx.Instruments.Remove(entity);
+
+                ctx.Instruments.Remove(populatedEntity);
                 return ctx.SaveChanges() == 1;
+                }
+                return false;
             }
         }
 
-        public IEnumerable<InstrumentListItem> GetInstrumentByName (string instrumentName)
+        public IEnumerable<InstrumentDetail> GetInstrumentByName(string instrumentName)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -165,12 +180,14 @@ namespace MusicInstrumentDB.Services
                     .Where(e => e.InstrumentName.ToLower().Contains(instrumentName.ToLower()) && e.OwnerId == _userId)
                     .Select(
                         e =>
-                            new InstrumentListItem
+                            new InstrumentDetail
                             {
                                 InstrumentId = e.InstrumentId,
                                 InstrumentName = e.InstrumentName,
                                 FamilyId = e.FamilyId,
-                                FamilyName = e.InstrumentFamily.FamilyName
+                                InstrumentFamilyName = e.InstrumentFamily.FamilyName,
+                                Description = e.Description,
+                                Transposition = e.Transposition
                             }
                         );
                 return entity.ToArray();
