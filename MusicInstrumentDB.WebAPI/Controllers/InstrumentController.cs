@@ -67,10 +67,15 @@ namespace MusicInstrumentDB.WebAPI.Controllers
         {
             var service = CreateInstrumentService();
 
+            if (service.DeleteInstrument(id))
+            {
+
             if (!service.DeleteInstrument(id))
                 return BadRequest("Please remove or edit musicians that refer to this instrument Id");
 
             return Ok();
+            }
+            return BadRequest("There is no instrument by that ID");
         }
 
 

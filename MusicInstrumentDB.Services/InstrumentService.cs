@@ -148,18 +148,26 @@ namespace MusicInstrumentDB.Services
                 var entity =
                     ctx
                     .Instruments
+                    .Where(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
+                if (entity.Any())
+                {
+                    var populatedEntity =
+                    ctx
+                    .Instruments
                     .Single(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
 
-                var entity2 =
+                    var entity2 =
                     ctx
                     .FamousMusicians
                     .Where(e => e.InstrumentId == instrumentId);
 
-                if (entity2 == null)
+                if (entity2 != null)
                     return false;
 
-                ctx.Instruments.Remove(entity);
+                ctx.Instruments.Remove(populatedEntity);
                 return ctx.SaveChanges() == 1;
+                }
+                return false;
             }
         }
 
