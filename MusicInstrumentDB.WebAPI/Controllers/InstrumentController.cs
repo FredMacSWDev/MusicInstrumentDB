@@ -81,10 +81,10 @@ namespace MusicInstrumentDB.WebAPI.Controllers
 
         
         [HttpGet]
-        public IHttpActionResult GetByName(string instrumentName)
+        public IHttpActionResult GetByName(string search)
         {
             var service = CreateInstrumentService();
-            var instruments = service.GetInstrumentByName(instrumentName);
+            var instruments = service.GetInstrumentByName(search);
             if (instruments == null)
                 return BadRequest("There are no Instruments by that name.");
 
