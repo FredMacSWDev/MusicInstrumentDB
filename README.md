@@ -7,7 +7,7 @@ We've created an n-Tier API to build an ever-growing database of musical instrum
 
 Each instrument contains a description of that instrument, the transposition of the instrument, and the instrument family it belongs to.
 
-**NOTE:**  We have created a [Console App](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) that works in conjunction with this API as an alternative way to access the endpoints.  
+**NOTE:**  We have created a [Console App](https://github.com/lcostilla287/InstrumentDBConsole/) that works in conjunction with this API as an alternative way to access the endpoints.  
 
 **CAUTION:**  The [API](https://github.com/FredMacSWDev/MusicInstrumentDB) and [console application](https://github.com/lcostilla287/InstrumentDBConsole/) **MUST** be running *simultaneously* in separate instances of VS Community for the [console application](https://github.com/lcostilla287/InstrumentDBConsole/) to work.
 
@@ -40,7 +40,7 @@ We used the following external resources in our project:
 [Trello Board](https://trello.com/b/6pDaTFPd/agile-sprint-board)  
 [DB Diagram](https://dbdiagram.io/d/60be2bbab29a09603d1852e8)  
 Our [GitHub](https://github.com/FredMacSWDev/MusicInstrumentDB) API Repository  
-Our [GitHub](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) Console app Repository  
+Our [GitHub](https://github.com/lcostilla287/InstrumentDBConsole/) Console app Repository  
 [Postman API Documentation](https://documenter.getpostman.com/view/15929032/TzeWH8Ly)  
 
 ## Techonologies Used
