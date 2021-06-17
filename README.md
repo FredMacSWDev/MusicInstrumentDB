@@ -3,7 +3,7 @@ An *Empty Coffee Cups* API Project
 
 
 ## The Project
-We've created an n-Tier API to build an ever-growing database of musical instruments, the instrument families that they classify under, and famous musicians that are known for use of the instrument.  The database is able to cross-reference an instrument to the instrument family it belongs to, as well as musicians that is well-known for using that instrument.
+We've created an n-Tier API to build an ever-growing database of musical instruments, the instrument families that they classify under, and famous musicians that are known for use of the instrument.  The database is able to cross-reference an instrument to the instrument family it belongs to, as well as musicians that are well-known for using that instrument.
 
 Each instrument contains a description of that instrument, the transposition of the instrument, and the instrument family it belongs to.
 
@@ -31,7 +31,7 @@ Once you have restored the NuGet packages, it is recommended that you Build the 
 
 ![Build Solution](https://github.com/FredMacSWDev/MusicInstrumentDB/blob/FredMacSWDev/T11/readme-patch-1/images/Build%20Solution%20-%20VS%20Community%202019%20Menu%20(Partial).PNG "'Build Solution' Menu Option")  
 
-To test our endpoints to Create, Read, Update, and Delete (CRUD) database items, we used [Postman](https://www.postman.com/), but you are more than welcome to use whichever software suits you best.
+To test our endpoints for Create, Read, Update, and Delete (CRUD) database items, we used [Postman](https://www.postman.com/), but you are more than welcome to use whichever software suits you best.  The CRUD endpoints function very well in the console app, and the entries do appear, as a result, in our database in the VS Comnmunity SQL Server Object Explorer.
 
 ## Resources
 We used the following external resources in our project:
