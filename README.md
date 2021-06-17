@@ -3,11 +3,13 @@ An *Empty Coffee Cups* API Project
 
 
 ## The Project
-We've created an API to build an ever-growing database of musical instruments, the instrument families that they classify under, and famous musicians that are known for use of the instrument.  The database is able to cross-reference an instrument to the instrument family it belongs to, as well as musicians that is well-known for using that instrument.
+We've created an n-Tier API to build an ever-growing database of musical instruments, the instrument families that they classify under, and famous musicians that are known for use of the instrument.  The database is able to cross-reference an instrument to the instrument family it belongs to, as well as musicians that is well-known for using that instrument.
 
 Each instrument contains a description of that instrument, the transposition of the instrument, and the instrument family it belongs to.
 
-**NOTE:**  We have created a [Console App](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) that works in conjunction with this API as an alternative way to access the endpoints.
+**NOTE:**  We have created a [Console App](https://github.com/lcostilla287/InstrumentDBConsole/tree/main) that works in conjunction with this API as an alternative way to access the endpoints.  
+
+**CAUTION:**  The [API](https://github.com/FredMacSWDev/MusicInstrumentDB) and [console application](https://github.com/lcostilla287/InstrumentDBConsole/) **MUST** be running *simultaneously* in separate instances of VS Community for the [console application](https://github.com/lcostilla287/InstrumentDBConsole/) to work.
 
 ## Installation
 To download this repository, press the green button that says 'Code'
